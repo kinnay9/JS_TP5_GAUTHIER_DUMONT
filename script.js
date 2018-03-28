@@ -2,16 +2,14 @@ window.addEventListener("load",function(){
 
 
 
-
+    var origin = 'https://crossorigin.me/';
     var buttonURL = document.getElementById("buttonURL");
     var inputURL = document.getElementById("inputURL");
-    console.log(inputURL);
-    console.log(buttonURL);
+    
 
     buttonURL.addEventListener("click",ajax);
-    buttonURL.addEventListener("click",()=>{
-        console.log("fired"),
-    });
+    
+
 
 
 
@@ -24,26 +22,27 @@ window.addEventListener("load",function(){
 
     async function ajax()
     {
-        let url = inputURL.value;
+        let url = origin+inputURL.value;
         console.log(url);
         let result = await fetch(url, 
         {
-            body :jsonObjet,
             headers:{
-                'content-type': 'application/xml',
+                'content-type': 'text/xml',
             },
             method : 'GET',
+
         });
 
-        if(result.status == 404)
+        if(result.ok)
         {
-            alert("L'url donnée n'éxiste pas ! ");
+            parser = new DOMParser();
+            xmlDoc = parser.parseFromString(result.text(),"text/xml");
+            document.body.appendChild(xmlDoc.documentElement);
+            
         }
         else
         {        
-            parser = new DOMParser();
-            xmlDoc = parser.parseFromString(response.text(),"text/xml");
-            console.log(xmlDoc);
+            alert("L'url donnée n'éxiste pas ! " +result.ok);
         }
     }
 });
