@@ -5,6 +5,7 @@ var url  = "http://radiofrance-podcast.net/podcast09/rss_15644.xml";
 var origin = 'https://crossorigin.me/';
 var buttonURL = document.getElementById("buttonURL");
 var inputURL = document.getElementById("inputURL");
+var URL;
 
 
 buttonURL.addEventListener("click",ajax);
@@ -60,7 +61,7 @@ function traiterXML(xml)
     console.log(channel);
     var titre = document.createElement("h1");
     titre.innerHTML = channel.getElementsByTagName("title")[0].childNodes[0].nodeValue;
-    document.body.appendChild(titre);
+    document.getElementById("listeLecture").appendChild(titre);
 
     var item = channel.getElementsByTagName("item");
     console.log(item);
@@ -68,18 +69,21 @@ function traiterXML(xml)
     {
         var divItem = document.createElement("div");
         divItem.addEventListener("click",eventClickedPodcast);
+        divItem.id = i
         var titleItem = item[i].getElementsByTagName("title")[0];
         divItem.appendChild(document.createElement("h2").innerHTML=titleItem);
         divItem.appendChild(document.createElement("br"));
         divItem.appendChild(document.createElement("p").innerHTML=item[i].getElementsByTagName("author")[0]);
         divItem.appendChild(document.createElement("br"));
         divItem.appendChild(document.createElement("a").innerHTML=item[i].getElementsByTagName("guid")[0]);
-        document.body.appendChild(divItem);
+        document.getElementById("listeLecture").appendChild(divItem);
     }
+
     
 }
-
 function eventClickedPodcast(e)
 {
-    alert("tu as cliqué sur un élément pour l'écouter");
+	document.getElementById('video').src = e.target.childNodes[0].nodeValue;
+
 }
+
