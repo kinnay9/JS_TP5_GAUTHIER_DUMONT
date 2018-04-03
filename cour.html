@@ -2,13 +2,34 @@
 <html>
     <head>
         <title>Mon lecteur de flux</title>
-
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <div id="listeLecture">
+            <div>
+                    
+            </div>
         </div>
-        <video>
-            
-        </video>
+        <div>
+            <video id="video">
+            <source src="src/bad-apple-touhou-english-cover-by-lizz-robinett.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="box">
+            <div class="box">
+                <input type="submit" id="play" value=" > ">
+            </div>
+            <div class="box" id="currentTime"></div>
+            <div class="box">/</div>
+            <div class="box" id="totalTime"></div>
+            <div class="box">
+                <input type="range" name="time" class="time" id="time">
+            </div>
+            <div class="box">
+                <input type="range" id="volume" class="vol">  
+            </div>
+                 
+        </div>
+            <script src="scriptTD.js"></script>
     </body>
 </html>

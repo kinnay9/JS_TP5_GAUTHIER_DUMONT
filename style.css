@@ -1,0 +1,15 @@
+.box {
+	margin: 1em;
+	float: left;
+}
+.after-box {
+	clear: left;
+}
+
+.vol {
+  width: 7em;
+}
+
+.time {
+	width: 22em;
+}
