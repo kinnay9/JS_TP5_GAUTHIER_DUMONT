@@ -17,7 +17,7 @@ async function ajax()
     let result;
     if(inputURL.value.trim().length == 0)
     {
-        alert("Veuillez rentrer une url valide");
+        alert("Veuillez entrer une url valide");
         return;
     }
     let url = origin+inputURL.value;
@@ -89,7 +89,7 @@ function traiterXML(xml)
     
 }
 
-//quand on clique sur un video/audio la definit comme source de la video/audio
+//quand on clique sur une video/audio, on la définit comme source
 //on nous met sur le lecteur dès que la vidéo à finit de charger
 async function eventClickedPodcast(e)
 {
