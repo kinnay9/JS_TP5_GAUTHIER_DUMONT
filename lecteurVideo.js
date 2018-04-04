@@ -4,12 +4,14 @@ window.addEventListener("load",function() {
 	setTotalTime();
 	var videoPlay = false;
 
-	
+	//ensemble des Listeners 
 	document.getElementById('play').addEventListener('click',playPause);
 	document.getElementById('volume').addEventListener('change',changeVolume);
 	document.getElementById('time').addEventListener('change',changeTime);
 	document.getElementById('test').addEventListener('click',tests);
 
+
+	// fonction qui met play ou pause 
 	function playPause(){
 		if (videoPlay) {
 			document.getElementById('video').pause();
@@ -21,10 +23,12 @@ window.addEventListener("load",function() {
 
 	}
 
+	//permet de changer le volume de la video/audio
 	function changeVolume(){
 		document.getElementById('video').volume = (document.getElementById('volume').value)/100;
 	}
 
+	//actualise le temps actuel de la video/audio
 	function setTime(){
 		function actualiser(){
 			var str = "";
@@ -42,6 +46,7 @@ window.addEventListener("load",function() {
 		setInterval(actualiser,1000);
 	}
 
+	//sert a definir de temps total de la video/audio
 	function setTotalTime(){
 		var str = "";
 		var totalTime =  document.getElementById('video').duration;
@@ -51,13 +56,11 @@ window.addEventListener("load",function() {
 		document.getElementById("totalTime").innerHTML = str;
 	}
 
+	//sert a gerer quand on veut aller a un point precise de la video
 	function changeTime(){
 		document.getElementById('video').currentTime = ((document.getElementById('time').value)*document.getElementById('video').duration)/100;
 	}
 
-	function tests(){
-		console.log(document.getElementById('video').duration);
-	}
 
 
 });

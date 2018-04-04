@@ -81,6 +81,8 @@ function traiterXML(xml)
 
     
 }
+
+//quand on clique sur un video/audio la definit comme source de la video/audio et la supprime de la liste de lecture
 function eventClickedPodcast(e)
 {
 	document.getElementById('video').src = e.target.childNodes[0].nodeValue;
