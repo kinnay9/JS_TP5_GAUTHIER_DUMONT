@@ -10,31 +10,35 @@
             <input type="url" id="inputURL">
             <input value="Generer" type="button" id="buttonURL">
         </div>
-        <div id="listeLecture">
-            
-        </div>
-        <div>
-            <video id="video">
-            <source  src="" type="video/mp4">
-            </video>
-        </div>
-        <div class="box">
-            <div class="box">
-                <input type="submit" id="play" value=" > ">
+        <div class="content">
+            <div class="listeLecture" id="listeLecture">
+                
             </div>
-            <div class="box" id="currentTime"></div>
-            <div class="box">/</div>
-            <div class="box" id="totalTime"></div>
-            <div class="box">
-                <input type="range" name="time" class="time" id="time">
+            <div class="video">
+                <div>
+                    <video id="video">
+                    <source  src="" type="video/mp4">
+                    </video>
+                </div>
+                <div class="box">
+                    <div class="box">
+                        <input type="submit" id="play" value=" > ">
+                    </div>
+                    <div class="box" id="currentTime"></div>
+                    <div class="box">/</div>
+                    <div class="box" id="totalTime"></div>
+                    <div class="box">
+                        <input type="range" name="time" class="time" id="time">
+                    </div>
+                    <div class="box">
+                        <input type="range" id="volume" class="vol">  
+                    </div>
+                    <input type="submit" name="st" id="test">
+                </div>
             </div>
-            <div class="box">
-                <input type="range" id="volume" class="vol">  
-            </div>
-            <input type="submit" name="st" id="test">
         </div>
-        <script src="scriptTD.js"></script>
+        <script src="lecteurVideo.js"></script>
     
-        <script src="script.js" ></script>
+        <script src="processXML.js" ></script>
     </body>
 </html>
