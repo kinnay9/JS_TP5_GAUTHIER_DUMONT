@@ -35,7 +35,7 @@ window.addEventListener("load",function() {
 			var tempspourcent = (currentTime*100)/document.getElementById('video').duration;
 			document.getElementById("time").value = tempspourcent - tempspourcent%1;
 			document.getElementById("currentTime").innerHTML = str;
-			if (document.getElementById('totalTime').value === null && document.getElementById('video').src !== "") {
+			if (document.getElementById('totalTime').value === undefined && document.getElementById('video').src !== "") {
 				setTotalTime();
 			}
 		}
