@@ -84,6 +84,7 @@ function traiterXML(xml)
 function eventClickedPodcast(e)
 {
 	document.getElementById('video').src = e.target.childNodes[0].nodeValue;
+    document.getElementById('listeLecture').removeChild(this);
 
 }
 
