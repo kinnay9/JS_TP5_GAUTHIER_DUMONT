@@ -10,7 +10,7 @@ document.getElementById('time').addEventListener('change',changeTime);
 
 //Fonction pour play ou pause la vidéo
 function playPause(){
-	let buttonPlay = document.getElementById("play");
+	var buttonPlay = document.getElementById("play");
 	if (videoPlay) {
 		document.getElementById('video').pause();
 		videoPlay = false;
