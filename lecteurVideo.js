@@ -45,7 +45,7 @@ function setTime(){
     setInterval(actualiser,1000);
 }
 
-//sert a definir de temps total de la video/audio
+//sert à définir le temps total de la video/audio
 function setTotalTime(){
     var str = "";
     var totalTime =  document.getElementById('video').duration;
@@ -55,7 +55,7 @@ function setTotalTime(){
     document.getElementById("totalTime").innerHTML = str;
 }
 
-//sert a gerer quand on veut aller a un point precise de la video
+//sert à gérer quand on veut aller à un point précis de la video
 function changeTime(){
 	document.getElementById('video').currentTime = ((document.getElementById('time').value)*document.getElementById('video').duration)/100;
 }
