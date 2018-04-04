@@ -1,26 +1,24 @@
-.box {
-	margin: 1em;
-	float: left;
-}
-.after-box {
-	clear: left;
-}
-
-.vol {
-  width: 7em;
-}
-
-.time {
-	width: 22em;
-}
-.content{
-    display:flex;
-    flex-direction: column;
-}
-.video{
-    width: 100%;
-}
-.listeLecture{
+.box{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.url{
+    display: flex;
+}
+
+.itemList{
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    -webkit-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.23);
+    -moz-moz-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.23);
+    box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.23);
+}
+
+.itemList:hover{
+    box-shadow: 15px 15px 10px -6px rgba(0,0,0,0.23);
 }

@@ -1,66 +1,66 @@
-window.addEventListener("load",function() {
 
-	setTime();
-	setTotalTime();
-	var videoPlay = false;
+setTime();
+setTotalTime();
+var videoPlay = false;
 
-	//ensemble des Listeners 
-	document.getElementById('play').addEventListener('click',playPause);
-	document.getElementById('volume').addEventListener('change',changeVolume);
-	document.getElementById('time').addEventListener('change',changeTime);
-	document.getElementById('test').addEventListener('click',tests);
+//ensemble des Listeners 
+document.getElementById('play').addEventListener('click',playPause);
+document.getElementById('volume').addEventListener('change',changeVolume);
+document.getElementById('time').addEventListener('change',changeTime);
 
-
-	// fonction qui met play ou pause 
-	function playPause(){
-		if (videoPlay) {
-			document.getElementById('video').pause();
-			videoPlay = false;
-		}else{
-			document.getElementById('video').play();
-			videoPlay = true;
-		}
-
+//Fonction pour play ou pause la vidéo
+function playPause(){
+	let buttonPlay = document.getElementById("play");
+	if (videoPlay) {
+		document.getElementById('video').pause();
+		videoPlay = false;
+		buttonPlay.value='PLAY';
+	}else{
+		document.getElementById('video').play();
+		videoPlay = true;
+		buttonPlay.value='PAUSE';
 	}
+}
 
 	//permet de changer le volume de la video/audio
 	function changeVolume(){
 		document.getElementById('video').volume = (document.getElementById('volume').value)/100;
 	}
 
-	//actualise le temps actuel de la video/audio
-	function setTime(){
-		function actualiser(){
-			var str = "";
-			var currentTime =  document.getElementById('video').currentTime;
-			var seconde = currentTime%60 - (currentTime%60)%1;
-			var minute = currentTime/60 - (currentTime/60)%1;
-			str = minute + " : " + seconde;
-			var tempspourcent = (currentTime*100)/document.getElementById('video').duration;
-			document.getElementById("time").value = tempspourcent - tempspourcent%1;
-			document.getElementById("currentTime").innerHTML = str;
-			if (document.getElementById('totalTime').value === undefined && document.getElementById('video').src !== "") {
-				setTotalTime();
-			}
-		}
-		setInterval(actualiser,1000);
-	}
+//actualise le temps actuel de la video/audio
+function setTime(){
+    function actualiser(){
+        var str = "";
+        var currentTime =  document.getElementById('video').currentTime;
+        var seconde = currentTime%60 - (currentTime%60)%1;
+        var minute = currentTime/60 - (currentTime/60)%1;
+        str = minute + " : " + seconde;
+        var tempspourcent = (currentTime*100)/document.getElementById('video').duration;
+        document.getElementById("time").value = tempspourcent - tempspourcent%1;
+        document.getElementById("currentTime").innerHTML = str;
+        if (document.getElementById('totalTime').value === undefined && document.getElementById('video').src !== "") {
+            setTotalTime();
+        }
+    }
+    setInterval(actualiser,1000);
+}
 
-	//sert a definir de temps total de la video/audio
-	function setTotalTime(){
-		var str = "";
-		var totalTime =  document.getElementById('video').duration;
-		var seconde = totalTime%60 - (totalTime%60)%1;
-		var minute = totalTime/60 - (totalTime/60)%1;
-		str = minute + " : " + seconde;
-		document.getElementById("totalTime").innerHTML = str;
-	}
+//sert a definir de temps total de la video/audio
+function setTotalTime(){
+    var str = "";
+    var totalTime =  document.getElementById('video').duration;
+    var seconde = totalTime%60 - (totalTime%60)%1;
+    var minute = totalTime/60 - (totalTime/60)%1;
+    str = minute + " : " + seconde;
+    document.getElementById("totalTime").innerHTML = str;
+}
 
-	//sert a gerer quand on veut aller a un point precise de la video
-	function changeTime(){
-		document.getElementById('video').currentTime = ((document.getElementById('time').value)*document.getElementById('video').duration)/100;
-	}
+//sert a gerer quand on veut aller a un point precise de la video
+function changeTime(){
+	document.getElementById('video').currentTime = ((document.getElementById('time').value)*document.getElementById('video').duration)/100;
+}
+
+	
 
 
 
-});

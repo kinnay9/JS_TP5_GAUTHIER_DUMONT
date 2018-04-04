@@ -5,7 +5,7 @@ var url  = "http://radiofrance-podcast.net/podcast09/rss_15644.xml";
 var origin = 'https://crossorigin.me/';
 var buttonURL = document.getElementById("buttonURL");
 var inputURL = document.getElementById("inputURL");
-var URL;
+
 
 
 buttonURL.addEventListener("click",ajax);
@@ -43,7 +43,6 @@ async function ajax()
         let resultText = await result.text();
 
         xmlDoc = parser.parseFromString(resultText,"text/xml");
-        console.log(xmlDoc);
 
 
         traiterXML(xmlDoc);        
@@ -58,35 +57,46 @@ async function ajax()
 function traiterXML(xml)
 {
     var channel = xml.getElementsByTagName("channel")[0];
-    console.log(channel);
     var titre = document.createElement("h1");
-    titre.innerHTML = channel.getElementsByTagName("title")[0].childNodes[0].nodeValue;
+    titre.innerHTML = "Chronique : " + channel.getElementsByTagName("title")[0].childNodes[0].nodeValue;
     document.getElementById("listeLecture").appendChild(titre);
 
     var item = channel.getElementsByTagName("item");
-    console.log(item);
+    
     for(var i = 0 ; i < item.length ; i++)
     {
         var divItem = document.createElement("div");
+        divItem.setAttribute("class","itemList"); // le nom de la classe 
         divItem.addEventListener("click",eventClickedPodcast);
-        divItem.id = i
-        var titleItem = item[i].getElementsByTagName("title")[0];
-        divItem.appendChild(document.createElement("h2").innerHTML=titleItem);
-        divItem.appendChild(document.createElement("br"));
-        divItem.appendChild(document.createElement("p").innerHTML=item[i].getElementsByTagName("author")[0]);
-        divItem.appendChild(document.createElement("br"));
-        divItem.appendChild(document.createElement("a").innerHTML=item[i].getElementsByTagName("guid")[0]);
+        divItem.id = i;
+        
+        var h3 = document.createElement("h3");
+        h3.innerHTML=item[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
+
+        var p = document.createElement("p");
+        p.innerHTML=item[i].getElementsByTagName("author")[0].childNodes[0].nodeValue;
+
+        var a = document.createElement("a");
+        a.href = "#video";
+        a.innerHTML=item[i].getElementsByTagName("guid")[0].childNodes[0].nodeValue;
+
+        divItem.appendChild(h3);
+        divItem.appendChild(p);
+        divItem.appendChild(a);
         document.getElementById("listeLecture").appendChild(divItem);
     }
 
     
 }
 
-//quand on clique sur un video/audio la definit comme source de la video/audio et la supprime de la liste de lecture
-function eventClickedPodcast(e)
+//quand on clique sur un video/audio la definit comme source de la video/audio
+//on nous met sur le lecteur dès que la vidéo à finit de charger
+async function eventClickedPodcast(e)
 {
-	document.getElementById('video').src = e.target.childNodes[0].nodeValue;
-    document.getElementById('listeLecture').removeChild(this);
-
+	document.getElementById('video').src = e.target.parentNode.getElementsByTagName("a")[0].innerHTML;
+    await document.getElementById('video').play();
+    document.getElementById("play").value = 'PAUSE';
+    videoPlay = true;
+    window.location.hash = "play";
 }
 
